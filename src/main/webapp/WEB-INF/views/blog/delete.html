@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete blog</title>
+</head>
+<body>
+<p>
+    <a href="/blogs">Blog list</a>
+</p>
+<h1>Delete blog</h1>
+<h2>Are you sure?</h2>
+<table>
+    <tr>
+        <td>Title:</td>
+        <td th:text="${blog.title}"></td>
+    </tr>
+    <tr>
+        <td>Content:</td>
+        <td th:text="${blog.content}"></td>
+    </tr>
+    <tr>
+        <td><a th:href="@{/delete-and-show-blog/__${blog.id}__ }">Delete this blog</a></td>
+    </tr>
+</table>
+</body>
+</html>

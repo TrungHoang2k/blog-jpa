@@ -9,11 +9,17 @@
   <p th:text="${message}"></p>
 </th:block>
 <a href="/create-blog">Create new blog</a>
-<h1>Customers</h1>
+<h1>Blogs</h1>
+<form>
+  Search by title:
+  <input name="search" type="text"/>
+  <input type="submit" value="Search"/>
+</form>
 <table border="1">
   <tr>
     <th>Title</th>
     <th>Content</th>
+    <th>Category</th>
     <th>Edit</th>
     <th>Delete</th>
   </tr>
@@ -21,10 +27,17 @@
     <tr>
       <td th:text="${blog.title}"></td>
       <td th:text="${blog.content}"></td>
+      <td th:if="${blog.category}" th:text="${blog.category.name}"></td>
+      <td th:unless="${blog.category}"></td>
       <td><a th:href="@{/edit-blog/__${blog.id}__ }">Edit</a></td>
       <td><a th:href="@{/delete-blog/__${blog.id}__ }">Delete</a></td>
     </tr>
   </th:block>
 </table>
+<div>
+  <a th:href="@{'/blogs'(page=${blogs.number - 1})}" th:if="${blogs.hasPrevious()}">Previous</a>
+  <span th:text="${blogs.number + 1}"></span>/<span th:text="${blogs.totalPages}"></span>
+  <a th:href="@{'/blogs'(page=${blogs.number + 1})}" th:if="${blogs.hasNext()}">Next</a>
+</div>
 </body>
 </html>
